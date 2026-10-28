@@ -1,0 +1,490 @@
+<Window xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:views="using:Xrmpe.Launcher.Views" x:Class="Xrmpe.Launcher.MainWindow" Title="ZoneLink — Launcher for xrMPE" Icon="/Assets/launcher.ico" Width="1320" Height="900" MinWidth="1000" MinHeight="640">
+  <Grid ColumnDefinitions="236,*"><views:ZoneBackdrop Grid.ColumnSpan="2" Opacity="0.24" />
+    <Border Padding="16,24" BorderBrush="#354350" BorderThickness="0,0,1,0">
+      <Border.Background><SolidColorBrush Color="#ED141A22" /></Border.Background>
+      <DockPanel>
+        <StackPanel DockPanel.Dock="Top" Spacing="8" Margin="8,0,0,30">
+          <views:ZoneMark Width="58" Height="58" HorizontalAlignment="Left" Margin="0,0,0,8" ToolTip.Tip="ZoneLink · Аномалия" />
+          <TextBlock Text="ZoneLink" FontSize="30" FontWeight="Bold" Foreground="#E8EDF2" />
+          <TextBlock Text="Launcher for xrMPE" Classes="eyebrow" FontSize="14" LetterSpacing="1.4" />
+        </StackPanel>
+        <StackPanel DockPanel.Dock="Bottom" Spacing="8" Margin="8,0,0,0">
+          <Border Background="#243650" CornerRadius="3" Padding="9,6" HorizontalAlignment="Left">
+            <TextBlock Text="0.6.1.3" FontSize="14" Foreground="#8BD6BE" LetterSpacing="1" />
+          </Border>
+          <TextBlock Text="Состояние подключения" FontSize="14" Classes="muted" LetterSpacing="2" />
+          <TextBlock Text="{Binding #Status.Text}" FontSize="14" Classes="muted" TextWrapping="Wrap" />
+          <TextBlock Name="LauncherVersionLabel" FontSize="14" Classes="muted" />
+          
+        </StackPanel>
+        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled"><StackPanel Spacing="6"><Button Name="PlayNav" Classes="nav selected" Click="Navigate" Tag="0" ><Grid ColumnDefinitions="24,*" ColumnSpacing="12"><Path Data="M0 11L12 0L24 11H21V24H14V16H10V24H3V11Z" Width="22" Height="24" Stretch="Uniform" Fill="#9BA9B7" /><TextBlock Grid.Column="1" Text="Главная" VerticalAlignment="Center" /></Grid></Button>
+          <Button Name="ServerNav" Classes="nav" Click="Navigate" Tag="1" ><Grid ColumnDefinitions="24,*" ColumnSpacing="12"><Path Data="M1 2H23V10H1Z M1 14H23V22H1Z M4 4V8H7V4Z M4 16V20H7V16Z" Width="22" Height="24" Stretch="Uniform" Fill="#9BA9B7" /><TextBlock Grid.Column="1" Text="Параметры игры" VerticalAlignment="Center" /></Grid></Button>
+          <Button Name="ConnectNav" Classes="nav" Click="Navigate" Tag="2" ><Grid ColumnDefinitions="24,*" ColumnSpacing="12"><Path Data="M4 0H24V20H18V10L5 23L1 19L14 6H4Z" Width="22" Height="24" Stretch="Uniform" Fill="#9BA9B7" /><TextBlock Grid.Column="1" Text="Подключиться" VerticalAlignment="Center" /></Grid></Button>
+          <Button Name="WorkshopNav" Classes="nav" Click="Navigate" Tag="7"><Grid ColumnDefinitions="24,*" ColumnSpacing="12"><Path Data="M2 2H22V20L12 26L2 20Z M6 7H18V10H6Z M6 14H18V17H6Z" Width="22" Height="24" Stretch="Uniform" Fill="#9BA9B7" /><TextBlock Grid.Column="1" Text="Мастерская" VerticalAlignment="Center" /></Grid></Button>
+          <Button Name="BrowserNav" Classes="nav" Click="Navigate" Tag="5" ><Grid ColumnDefinitions="24,*" ColumnSpacing="12"><Path Data="M0 2H5V7H0Z M8 2H24V7H8Z M0 10H5V15H0Z M8 10H24V15H8Z M0 18H5V23H0Z M8 18H24V23H8Z" Width="22" Height="24" Stretch="Uniform" Fill="#9BA9B7" /><TextBlock Grid.Column="1" Text="Серверы" VerticalAlignment="Center" /></Grid></Button>
+          <Button Name="UpdatesNav" Classes="nav" Click="Navigate" Tag="4" ><Grid ColumnDefinitions="24,*" ColumnSpacing="12"><Path Data="M9 0H15V12H22L12 23L2 12H9Z M0 22H5V25H19V22H24V29H0Z" Width="22" Height="24" Stretch="Uniform" Fill="#9BA9B7" /><TextBlock Grid.Column="1" Text="Обновления" VerticalAlignment="Center" /></Grid></Button>
+          <Button Name="SettingsNav" Classes="nav" Click="Navigate" Tag="3" ><Grid ColumnDefinitions="24,*" ColumnSpacing="12"><Path Data="M8 0H16L18 6L24 8V16L18 18L16 24H8L6 18L0 16V8L6 6Z M8 8V16H16V8Z" Width="22" Height="24" Stretch="Uniform" Fill="#9BA9B7" /><TextBlock Grid.Column="1" Text="Настройки" VerticalAlignment="Center" /></Grid></Button>
+          <Button Name="AddonsNav" Classes="nav" Click="Navigate" Tag="6" ><Grid ColumnDefinitions="24,*" ColumnSpacing="12"><Path Data="M12 0L24 6V20L12 26L0 20V6Z M3 7L12 12L21 7L12 3Z M3 10V18L10 22V14Z M14 14V22L21 18V10Z" Width="22" Height="24" Stretch="Uniform" Fill="#9BA9B7" /><TextBlock Grid.Column="1" Text="Игровой контент" VerticalAlignment="Center" /></Grid></Button>
+        </StackPanel></ScrollViewer>
+      </DockPanel>
+    </Border>
+    <Grid Grid.Column="1" RowDefinitions="Auto,*,Auto" Margin="26,22">
+      <Border Grid.Row="0" BorderBrush="#354350" BorderThickness="0,0,0,1" Padding="0,0,0,16">
+        <Grid ColumnDefinitions="*,Auto" ColumnSpacing="16">
+          <Grid ColumnDefinitions="*">
+            <StackPanel Spacing="4"><TextBlock Name="PageTitle" Text="Главная" Classes="eyebrow" FontSize="14" LetterSpacing="2" /><TextBlock Name="DeveloperIndicator" Text="Режим разработчика включён" IsVisible="False" Foreground="#FFB47D" FontSize="14" /></StackPanel>
+            <TextBlock Grid.Column="0" Name="Status" Text="●  Готов к настройке" Foreground="#8BD6BE" FontSize="14" MaxWidth="300" HorizontalAlignment="Left" TextWrapping="Wrap" Margin="0,40,0,0" />
+          </Grid>
+          <TextBlock Grid.Column="1" Text="ZoneLink" VerticalAlignment="Center" Classes="muted" FontSize="14" />
+        </Grid>
+      </Border>
+      <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" Name="PageScroll">
+        <StackPanel Name="PageContent" Spacing="18" Margin="0,18,6,18" MaxWidth="1440">
+          <StackPanel Name="PlayPage" Spacing="18" MaxWidth="1320">
+            <Border Name="HomeHero" BorderBrush="#4B4E4F" BorderThickness="1" CornerRadius="12" ClipToBounds="True" Height="360">
+              <Grid>
+                <views:ZoneBackdrop />
+                <Border>
+                  <Border.Background>
+                    <LinearGradientBrush StartPoint="0%,50%" EndPoint="100%,50%">
+                      <GradientStop Color="#B80B0F14" Offset="0" />
+                      <GradientStop Color="#850B0F14" Offset="0.40" />
+                      <GradientStop Color="#000C182A" Offset="1" />
+                    </LinearGradientBrush>
+                  </Border.Background>
+                </Border>
+                <StackPanel Spacing="12" Margin="26" VerticalAlignment="Center" MaxWidth="520" HorizontalAlignment="Left">
+                  <views:ZoneWordmark Width="390" Height="74" HorizontalAlignment="Left" /><TextBlock Text="Launcher for xrMPE" FontSize="17" Foreground="#E8EDF2" />
+                  <TextBlock Text="ZoneLink" FontSize="46" FontWeight="SemiBold" LineHeight="54" IsVisible="False" />
+                  <TextBlock Text="Игра с друзьями. Серверы. Ваш игровой контент." Classes="muted" LineHeight="23" />
+                  <Button Name="CreateGameButton" Content="СОЗДАТЬ ИГРУ" Classes="primary" Click="LaunchServer" HorizontalAlignment="Left" />
+                  <Button Name="LaunchButton" Content="ПРИСОЕДИНИТЬСЯ К ИГРЕ" Classes="primary" Click="JoinGame" HorizontalAlignment="Left" ToolTip.Tip="Открыть игру для подключения через Steam. Аддон у друзей должен совпадать." />
+                  <TextBlock Name="HomeAddonName" Text="Чтение игрового контента…" FontSize="15" TextWrapping="Wrap" Foreground="#8BD6BE" />
+                </StackPanel>
+              </Grid>
+            </Border>
+            <Border Name="HomeReadinessCard" Classes="notice" IsVisible="False"><StackPanel Spacing="10"><TextBlock Name="HomeLaunchReason" IsVisible="False" TextWrapping="Wrap" Foreground="#B6D9FF" FontSize="16" /><Button Name="HomeFixButton" Content="Выбрать аддон" Click="OpenReadinessAction" HorizontalAlignment="Left" /></StackPanel></Border>
+            <Grid IsVisible="False" ColumnDefinitions="*,*,*" ColumnSpacing="12">
+<Button Name="HomeServersCard" Classes="quick" Click="Navigate" Tag="5"><Grid ColumnDefinitions="34,*" ColumnSpacing="10"><Path Data="M0 2H24V7H0Z M0 12H24V17H0Z M0 22H24V27H0Z" Fill="#9BA9B7" Width="26" Height="30" Stretch="Uniform" /><StackPanel Grid.Column="1" Spacing="5"><TextBlock Text="Серверы" FontWeight="SemiBold" FontSize="17" /><TextBlock Text="Найти сервер" Classes="muted" FontSize="14" /></StackPanel></Grid></Button>
+<Button Name="HomeConnectCard" Grid.Column="1" Classes="quick" Click="Navigate" Tag="2"><Grid ColumnDefinitions="34,*" ColumnSpacing="10"><Path Data="M4 15L12 7 Q19 0 25 7 Q30 13 23 20L18 25 M22 13L14 21 Q7 28 1 21 Q-4 15 3 8L8 3" Stroke="#9BA9B7" StrokeThickness="3" Width="28" Height="30" Stretch="Uniform" /><StackPanel Grid.Column="1" Spacing="5"><TextBlock Text="Подключиться" FontWeight="SemiBold" FontSize="17" /><TextBlock Text="Steam или IP" Classes="muted" FontSize="14" /></StackPanel></Grid></Button>
+<Button Name="HomeHostCard" Grid.Column="2" Classes="quick" Click="Navigate" Tag="1"><Grid ColumnDefinitions="34,*" ColumnSpacing="10"><Path Data="M12 0V26M0 13H24" Stroke="#9BA9B7" StrokeThickness="3" Width="26" Height="30" Stretch="Uniform" /><StackPanel Grid.Column="1" Spacing="5"><TextBlock Text="Параметры игры" FontWeight="SemiBold" FontSize="17" /><TextBlock Text="Свой dedicated" Classes="muted" FontSize="14" /></StackPanel></Grid></Button>
+</Grid>
+            <Grid Name="HomeStatusGrid" ColumnDefinitions="*,*" ColumnSpacing="16">
+              <Border Classes="card homeStatus" Padding="22"><StackPanel Spacing="10">
+                <TextBlock Text="СВОЙ СЕРВЕР" Classes="eyebrow" FontSize="13" />
+                <TextBlock Name="HomeServerName" Text="{Binding #ServerName.Text}" FontSize="22" FontWeight="SemiBold" TextTrimming="CharacterEllipsis" />
+                <TextBlock Text="{Binding #ServerStatus.Text}" FontSize="18" FontWeight="SemiBold" TextWrapping="Wrap" /><TextBlock Name="HomeServerAvailability" Text="Доступность не проверена" Classes="muted" FontSize="16" TextWrapping="Wrap" />
+                <TextBlock Text="Карта профиля" Classes="muted" FontSize="16" />
+                <TextBlock Text="{Binding #ServerMap.Text}" Foreground="#8BD6BE" />
+              </StackPanel></Border>
+              <Border Grid.Column="1" Classes="card homeStatus" Padding="22"><StackPanel Spacing="10">
+                <TextBlock Text="ИГРОВОЙ КЛИЕНТ" Classes="eyebrow" FontSize="13" /><TextBlock IsVisible="False" Name="HomeLastServer" Text="Последних IP-подключений пока нет" FontSize="17" TextWrapping="Wrap" Classes="muted" />
+                <TextBlock Text="{Binding #Status.Text}" FontSize="19" FontWeight="SemiBold" TextWrapping="Wrap" />
+                <TextBlock Text="{Binding #ServerTransportSummary.Text}" Classes="muted" FontSize="17" TextWrapping="Wrap" />
+                <Button IsVisible="False" Content="Подключиться к серверу →" Click="Navigate" Tag="2" HorizontalAlignment="Left" />
+              </StackPanel></Border>
+            </Grid>
+            <Border BorderBrush="#354350" BorderThickness="0,1,0,0" Padding="0,14,0,0">
+              <StackPanel Spacing="5">
+                <TextBlock Text="УСТАНОВКА ИГРЫ" Classes="eyebrow" FontSize="14" />
+                <TextBlock Text="{Binding #GameFolderStatus.Text}" Classes="muted" FontSize="14" />
+                <TextBlock Text="Папку игры можно изменить в разделе «Настройки»." Classes="muted" FontSize="14" />
+              </StackPanel>
+            </Border>
+          </StackPanel>
+          <StackPanel Name="ServerPage" IsVisible="False" Spacing="14" MaxWidth="1120" HorizontalAlignment="Stretch">
+            <WrapPanel><TextBlock Text="Параметры игры" Classes="heading" Margin="0,0,12,0" /><Button Classes="help" Content="?" Tag="Выберите проверенный аддон, режим и карту. Сценарий зависит от выбранного аддона. Способ подключения меняется на странице «Подключиться». Публикация не открывает порты автоматически." ToolTip.Tip="Как создать сервер" Click="ShowContextHelp" /></WrapPanel><Border Classes="notice"><StackPanel Spacing="8"><TextBlock Name="ServerTransportSummary" Text="Подключение: по IP" FontSize="17" FontWeight="SemiBold" /><TextBlock Name="ServerScenarioHelp" TextWrapping="Wrap" Classes="muted" /></StackPanel></Border>
+            <Grid ColumnDefinitions="*,Auto" ColumnSpacing="12">
+              <StackPanel Spacing="6">
+                <TextBlock Name="ActiveAddonLabel" Text="Чтение аддонов…" FontSize="19" FontWeight="SemiBold" TextWrapping="Wrap" />
+                <TextBlock Text="{Binding #ServerStatus.Text}" Classes="muted" FontSize="15" TextWrapping="Wrap" />
+              </StackPanel>
+              <Button Grid.Column="1" Content="Сменить аддон" Click="Navigate" Tag="6" VerticalAlignment="Top" />
+            </Grid>
+                <WrapPanel>
+                  <Button Name="ServerLaunchButton" Content="Создать игру и подключиться" Classes="primary" Click="LaunchServer" FontSize="16" Margin="0,0,12,8" />
+                  <Button Name="SaveProfileButton" Content="Сохранить профиль" Click="SaveServerProfile" FontSize="16" Margin="0,0,0,8" />
+                </WrapPanel>
+<Border Name="ServerFailurePanel" IsVisible="False" Classes="errorCard"><StackPanel Spacing="10"><TextBlock Text="Не удалось запустить сервер" FontSize="21" FontWeight="SemiBold" Foreground="#F45C5C" /><TextBlock Name="ServerFailureReason" TextWrapping="Wrap" FontSize="16" /><WrapPanel><Button Name="OpenSteamAction" Content="Открыть Steam" Click="OpenSteamFromFailure" IsVisible="False" Margin="0,0,8,8" /><Button Name="RetryServerAction" Content="Повторить запуск" Click="LaunchServer" Margin="0,0,8,8" /><Button Content="Подробнее" Click="ShowServerFailureDetails" Margin="0,0,0,8" /></WrapPanel><TextBlock Name="SteamOpenStatus" Classes="muted" TextWrapping="Wrap" /><TextBlock Name="ServerFailureTechnical" IsVisible="False" FontFamily="Consolas" FontSize="13" TextWrapping="Wrap" Classes="muted" /></StackPanel></Border>            <Border Classes="card" Padding="20">
+              <StackPanel Spacing="14">
+                <Grid ColumnDefinitions="*,*" ColumnSpacing="16">
+                  <StackPanel Spacing="7"><TextBlock Text="Название сервера" FontSize="16" /><TextBox Name="ServerName" Text="xrmpe_pvp_addon" FontSize="16" Watermark="Мой сервер" /></StackPanel>
+                  <StackPanel Grid.Column="1" Spacing="7"><TextBlock Text="Игровой режим" FontSize="16" /><ComboBox Name="ContentMode" SelectionChanged="ContentModeChanged" HorizontalAlignment="Stretch" FontSize="16" /></StackPanel>
+                </Grid>
+                <WrapPanel><TextBlock Text="Карта или стартовая локация" FontSize="16" Margin="0,0,10,0" /><Button Classes="help" Content="?" Tag="Наличие ресурса карты не доказывает работоспособность режима. Карты и стартовые локации берутся из ресурсов и метаданных выбранного аддона." ToolTip.Tip="Почему карта заблокирована?" Click="ShowContextHelp" /></WrapPanel>
+                <ComboBox Name="VerifiedMapChoice" HorizontalAlignment="Stretch" FontSize="16" SelectionChanged="ContentMapChanged" PlaceholderText="Нет подтверждённых источников карт" />
+                <TextBox Name="ServerMap" Text="mp_kpp_2" IsReadOnly="True" IsVisible="False" />
+                <TextBlock Name="MapEvidenceText" TextWrapping="Wrap" Classes="muted" FontSize="14" />
+                <Grid Name="PvpGameplayFields" ColumnDefinitions="*,*" ColumnSpacing="16">
+                  <StackPanel Spacing="7"><TextBlock Text="Количество мест" FontSize="16" /><NumericUpDown Name="ServerPlayers" Minimum="2" Maximum="64" Value="32" FormatString="0" FontSize="16" /><TextBlock Text="Параметр запуска. Фактический лимит зависит от аддона; нагрузка на это число игроков не проверялась." Classes="muted" FontSize="14" TextWrapping="Wrap" /></StackPanel>
+                  <StackPanel Name="PvpFragFields" Grid.Column="1" Spacing="7"><TextBlock Text="Лимит фрагов" FontSize="16" /><NumericUpDown Name="ServerKills" Minimum="0" Maximum="10000" Value="60" FormatString="0" FontSize="16" /><TextBlock Text="0 — без ограничения по фрагам." Classes="muted" FontSize="14" TextWrapping="Wrap" /></StackPanel>
+                </Grid>
+                <StackPanel Name="CoopScenarioPanel" IsVisible="False" Spacing="8">
+                  <TextBlock Text="Кампания / сохранение" FontSize="16" />
+                  <ComboBox Name="CampaignSaveChoice" HorizontalAlignment="Stretch" SelectionChanged="ScenarioSelectionChanged" />
+                  <Button Content="Обновить сохранения" Click="RefreshCampaignSaves" HorizontalAlignment="Left" />
+                  <TextBlock Text="Сложность" /><ComboBox Name="CampaignDifficulty" HorizontalAlignment="Stretch" SelectionChanged="ScenarioSelectionChanged" />
+                </StackPanel>
+                <StackPanel Name="DefenceScenarioPanel" IsVisible="False" Spacing="8">
+                  <TextBlock Text="Ротация обороны · по одному имени карты в строке" TextWrapping="Wrap" />
+                  <TextBox Name="DefenceRotation" AcceptsReturn="True" MinHeight="65" TextChanged="ScenarioTextChanged" />
+                  <TextBlock Text="Выбор карты выше начинает новую ротацию. Для нескольких карт укажите их имена из списка аддона; первая запускается сразу." TextWrapping="Wrap" Classes="muted" />
+                </StackPanel>
+                <StackPanel Name="ScenarioMinPanel" IsVisible="False" Spacing="7"><TextBlock Text="Минимум игроков для старта" /><NumericUpDown Name="ScenarioMinPlayers" Minimum="1" Maximum="64" Value="1" FormatString="0" ValueChanged="ScenarioNumberChanged" /></StackPanel>
+                <TextBlock Name="UnverifiedModeInfo" IsVisible="False" FontSize="15" TextWrapping="Wrap" Foreground="#FFB47D" />
+                <Border Background="#202E43" BorderBrush="#4D79B8" BorderThickness="1" CornerRadius="4" Padding="14,10"><StackPanel Spacing="10"><TextBlock Name="ContentAvailability" Text="Каталог ещё не прочитан." FontSize="15" TextWrapping="Wrap" Foreground="#FFB47D" /><Button Name="ServerFixButton" Content="Выбрать карту" IsVisible="False" Click="OpenReadinessAction" HorizontalAlignment="Left" /></StackPanel></Border>
+                <Expander Name="ServerTechnicalOptions" Header="Дополнительно · порты и публикация" HorizontalAlignment="Stretch">
+                  <StackPanel Spacing="12" Margin="0,12,0,0">
+                    <Grid ColumnDefinitions="*,*" ColumnSpacing="16">
+                      <StackPanel Spacing="7"><TextBlock Text="Игровой порт" FontSize="15" /><NumericUpDown Name="ServerPort" Minimum="1" Maximum="65535" Value="5446" FormatString="0" ToolTip.Tip="Кнопка игры использует этот порт; у запущенного сервера порт фиксируется." /></StackPanel>
+                      <StackPanel Name="DeveloperQueryPortPanel" IsVisible="False" Grid.Column="1" Spacing="7"><TextBlock Text="Query-порт UDP" FontSize="15" /><NumericUpDown Name="ServerQueryPort" Minimum="1" Maximum="65535" Value="5445" FormatString="0" ToolTip.Tip="Подсказка браузеру для запросов статистики, не новый аргумент dedicated." /></StackPanel>
+                    </Grid>
+                    <CheckBox Name="AdvertiseServer" IsChecked="False" IsCheckedChanged="AdvertiseServerChanged"><TextBlock Text="Показывать сервер в локальной сети" TextWrapping="Wrap" FontSize="15" /></CheckBox>
+                    <TextBlock Text="Используются сохранённые настройки публикации. Проброс портов и правила брандмауэра автоматически не меняются." Classes="muted" FontSize="14" TextWrapping="Wrap" />
+                  </StackPanel>
+                </Expander>
+
+                <TextBlock Name="ProfileStatus" Text="Настройки хранятся отдельно от официального лаунчера." TextWrapping="Wrap" Classes="muted" FontSize="14" />
+                <TextBlock Name="ServerStatus" Text="Сервер не запущен" IsVisible="False" />
+              </StackPanel>
+            </Border>
+          </StackPanel>
+          <StackPanel Name="AddonsPage" IsVisible="False" Spacing="14">
+            <WrapPanel><TextBlock Text="Игровой контент" Classes="heading" Margin="0,0,12,0" /><Button Classes="help" Content="?" Tag="Аддон — основной игровой контейнер. Одновременно выбран один .addon. Запуск разрешён только для проверенных сочетаний; пользовательские моды пока не подключаются." ToolTip.Tip="Что такое игровой аддон?" Click="ShowContextHelp" /></WrapPanel>
+            <TextBlock Text="Выберите основной аддон. Планы модификаций хранятся отдельно для каждого аддона." Classes="muted" FontSize="15" TextWrapping="Wrap" />
+            <TabControl Name="ContentTabs" SelectedIndex="0">
+              <TabItem Header="Аддоны"><StackPanel Spacing="12" Margin="0,12,0,0">
+            <Grid ColumnDefinitions="*,180" ColumnSpacing="12">
+              <TextBox Name="AddonSearch" Watermark="Название, автор или описание" TextChanged="FilterAddons" />
+              <ComboBox Name="AddonModeFilter" Grid.Column="1" SelectedIndex="0" SelectionChanged="FilterAddonModes" HorizontalAlignment="Stretch">
+                <ComboBoxItem Content="Все аддоны" /><ComboBoxItem Content="PvP / dm" /><ComboBoxItem Content="Кооператив" /><ComboBoxItem Content="Оборона" /><ComboBoxItem Content="С ошибками" />
+              </ComboBox>
+            </Grid>
+            <Button Name="RefreshAddonsButton" Content="Обновить каталог аддонов" Click="RefreshAddons" />
+            <Button Name="AddonFingerprintButton" Content="Скопировать сведения об аддоне для друзей" Click="CopyAddonFingerprint" />
+            <TextBlock Name="AddonFingerprintStatus" Classes="muted" TextWrapping="Wrap" Text="Для Steam у всех участников должны совпадать выбранный аддон и его содержимое." />
+            <TextBlock Name="AddonCatalogStatus" Text="Выберите папку игры в настройках, затем обновите каталог." Classes="muted" TextWrapping="Wrap" />
+            <StackPanel Name="AddonCards" Spacing="12" />
+              </StackPanel></TabItem>
+              <TabItem Header="Моды выбранного аддона"><StackPanel Spacing="14" Margin="0,12,0,0" MaxWidth="1120">
+                <TextBlock Name="ModAddonName" FontSize="23" FontWeight="SemiBold" TextWrapping="Wrap" />
+                <Border Classes="card"><StackPanel Spacing="12">
+                  <TextBlock Text="Другие пользовательские моды пока не подключаются" FontSize="20" FontWeight="SemiBold" TextWrapping="Wrap" Foreground="#FFB47D" />
+                  <TextBlock Text="Здесь можно сохранить заметки для выбранного аддона. Дополнительные пользовательские модификации не подключаются." FontSize="15" Classes="muted" TextWrapping="Wrap" />
+                  <TextBlock Text="Заметки профиля" FontSize="16" />
+                  <TextBox Name="ModNotes" AcceptsReturn="True" TextWrapping="Wrap" MinHeight="110" MaxLength="2000" Watermark="Запишите желаемые модификации или требования к совместимости. Это только заметки, не активация модов." />
+                  <Button Content="Сохранить заметки" Name="SaveModNotesButton" Click="SaveModWorkspace" HorizontalAlignment="Left" />
+                  <TextBlock Name="ModWorkspaceStatus" TextWrapping="Wrap" Classes="muted" FontSize="14" />
+                </StackPanel></Border>
+              </StackPanel></TabItem>
+            </TabControl>
+          </StackPanel>
+          <StackPanel Name="ConnectPage" IsVisible="False" Spacing="18">
+            <Border Name="ConnectionReadinessCard" Classes="notice"><StackPanel Spacing="10"><TextBlock Name="ClientAddonNotice" Classes="muted" FontSize="15" TextWrapping="Wrap" /><Button Name="ConnectionFixButton" Content="Выбрать аддон" IsVisible="False" Click="OpenReadinessAction" HorizontalAlignment="Left" /></StackPanel></Border>
+            <TextBlock Text="Подключиться к друзьям" Classes="heading" />
+            <TextBlock Text="Steam — приглашение. По IP — адрес и порт. Доступный способ зависит от сервера; ваш выбор сохраняется." Classes="muted" />
+            <Grid ColumnDefinitions="*,*" ColumnSpacing="12" Width="620" MaxWidth="620" HorizontalAlignment="Left">
+              <Button Name="SteamChoice" Classes="transport" Tag="1" Click="ChooseConnectionMethod" IsEnabled="{Binding #NetworkMode.IsEnabled}"><StackPanel Spacing="4"><TextBlock Text="Steam" FontSize="20" FontWeight="SemiBold" /><TextBlock Text="Приглашения друзьям" Classes="muted" FontSize="14" /></StackPanel></Button>
+              <Button Name="IpChoice" Grid.Column="1" Classes="transport" Tag="0" Click="ChooseConnectionMethod" IsEnabled="{Binding #NetworkMode.IsEnabled}"><StackPanel Spacing="4"><TextBlock Text="По IP" FontSize="20" FontWeight="SemiBold" /><TextBlock Text="Адрес и порт сервера" Classes="muted" FontSize="14" /></StackPanel></Button>
+            </Grid>
+            <WrapPanel><TextBlock Text="Нужна помощь с подключением?" Classes="muted" VerticalAlignment="Center" Margin="0,0,6,0" /><Button Name="ConnectionHelp" Classes="help" Content="?" Tag="Steam открывает меню клиента с прежним флагом -steam. Запустите Steam, войдите в аккаунт, затем примите приглашение друга в оверлее. Выбранная строка сервера не означает автоматического вступления. IP подключает по адресу и порту; автоматического обхода NAT нет." ToolTip.Tip="Steam — приглашения. IP — адрес сервера." Click="ShowContextHelp" /></WrapPanel>
+<ComboBox Name="NetworkMode" IsVisible="False" SelectedIndex="0" SelectionChanged="NetworkModeChanged" MinWidth="200" MaxWidth="300" ToolTip.Tip="Этот режим используется для запуска клиента и dedicated-сервера. Команды запуска сохранены." >
+            <ComboBoxItem Content="По IP — прямое подключение" />
+            <ComboBoxItem Content="Steam — приглашения" />
+          </ComboBox>
+            <Border Name="IpConnectPanel" Classes="card" MaxWidth="760" HorizontalAlignment="Left">
+              <StackPanel Spacing="14">
+                <TextBlock Text="Прямое подключение по IP" FontSize="22" />
+                <TextBlock Text="Введите IPv4, домен или localhost. Порт задаётся отдельно." TextWrapping="Wrap" Classes="muted" />
+                <TextBlock Text="IP-адрес или домен" />
+                <TextBox Name="RemoteHost" Text="localhost" Watermark="Например: play.example.org" ToolTip.Tip="IPv4, доменное имя или localhost, без http:// и без номера порта." />
+                <TextBlock Text="Порт сервера" />
+                <NumericUpDown Name="RemotePort" Value="5446" Minimum="1" Maximum="65535" Increment="1" FormatString="0" />
+                <Button Name="ConnectButton" Content="Подключиться" Classes="primary" Click="ConnectRemote" HorizontalAlignment="Left" />
+                <TextBlock Text="Последние адреса (сохраняются при попытке подключения)" Classes="muted" TextWrapping="Wrap" />
+                <ComboBox Name="RecentAddresses" HorizontalAlignment="Stretch" SelectionChanged="RecentAddressChanged" PlaceholderText="История пока пуста" />
+                <TextBlock Text="Хост должен быть доступен по этому адресу и порту. Если соединение не устанавливается, проверьте адрес у владельца сервера; для интернета может потребоваться проброс порта." TextWrapping="Wrap" Classes="muted" />
+              </StackPanel>
+            </Border>
+            <Border Name="SteamConnectPanel" Classes="card" IsVisible="False" MaxWidth="940" HorizontalAlignment="Left">
+              <StackPanel Spacing="14">
+                <TextBlock Text="Игра через Steam" FontSize="22" />
+                <TextBlock Text="Перед запуском откройте Steam и войдите в аккаунт. Нужен проверенный PvP-аддон." TextWrapping="Wrap" Classes="muted" />
+                <TextBlock Text="1. Запустите клиент кнопкой ниже.&#10;2. Откройте Steam Overlay: Shift+Tab.&#10;3. Примите приглашение друга в игру." TextWrapping="Wrap" Classes="muted" />
+                <Expander Header="Я создаю сервер — как пригласить друга?"><TextBlock Text="Выберите Steam, запустите dedicated, затем «Запустить игру» на главной. В оверлее Shift+Tab откройте список друзей и отправьте приглашение в игру. Друг запускает Steam-клиент и принимает приглашение. Работа между разными сетями требует отдельной проверки." TextWrapping="Wrap" Margin="0,12" Classes="muted" /></Expander><Button Name="SteamClientButton" Content="Запустить PvP-клиент Steam" Classes="primary" Click="LaunchSteamMenu" HorizontalAlignment="Left" />
+                <TextBlock Text="Автоматического вступления в выбранный сервер нет. Если приглашение не работает, проверьте оверлей и обратитесь к хосту; доступное прямое подключение находится во вкладке «По IP»." TextWrapping="Wrap" Classes="muted" />
+              </StackPanel>
+            </Border>
+          </StackPanel>
+          <StackPanel Name="BrowserPage" IsVisible="False" Spacing="12">
+            <TextBlock Text="Серверы" Classes="heading" />
+              
+              
+            <TabControl Name="ServerTabs" SelectedIndex="0" SelectionChanged="FilterServerTab" Height="44">
+                <TabItem Header="Все" /><TabItem Header="Избранное" /><TabItem Header="Локальная сеть" /><TabItem Header="История" /><TabItem Header="Интернет" />
+            </TabControl>
+            <Grid ColumnDefinitions="*,*" ColumnSpacing="10">
+              <TextBox Name="ServerNameFilter" Watermark="Название, карта, режим или адрес" TextChanged="FilterServers" />
+              <TextBox Name="ServerMapFilter" Grid.Column="1" Watermark="Карта" TextChanged="FilterServers" />
+            </Grid>
+            <WrapPanel>
+                <ComboBox Name="ServerSort" SelectedIndex="0" SelectionChanged="FilterServerTab" Width="180" Margin="0,0,12,6" ToolTip.Tip="Порядок серверов">
+                  <ComboBoxItem Content="По названию" /><ComboBoxItem Content="По пингу" /><ComboBoxItem Content="По игрокам" /><ComboBoxItem Content="По карте" />
+                </ComboBox>
+              <CheckBox Name="FreeServerSlots" Content="Есть свободные места" IsCheckedChanged="FilterServers" Margin="0,0,18,0" />
+              <CheckBox Name="AutoRefreshServers" Content="Обновлять каждые 30 с на этой странице" />
+            </WrapPanel>
+            <Grid Name="BrowserHybrid" ColumnDefinitions="*,340" RowDefinitions="Auto,Auto" ColumnSpacing="18" RowSpacing="14">
+              <Border Name="BrowserListPanel" Classes="card" Padding="8" ClipToBounds="True">
+                <Grid RowDefinitions="Auto,*,Auto">
+                  <Grid ColumnDefinitions="*,Auto" Margin="8,4,8,10"><TextBlock Text="Доступные серверы" FontSize="17" FontWeight="SemiBold" VerticalAlignment="Center" /><Button Grid.Column="1" Name="BrowserRefreshButton" Content="Обновить список" Click="RefreshServers" /></Grid>
+                  <ListBox Name="ServerList" Grid.Row="1" Height="360" VerticalAlignment="Top" SelectionChanged="BrowserSelectionChanged" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                    <ListBox.ItemTemplate><DataTemplate>
+                      <Grid ColumnDefinitions="*,Auto" RowDefinitions="Auto,Auto,Auto" Margin="2,10" RowSpacing="5" ColumnSpacing="10">
+                        <TextBlock Text="{Binding DisplayName}" FontSize="16" FontWeight="SemiBold" TextTrimming="CharacterEllipsis" ToolTip.Tip="{Binding Address}" />
+                        <TextBlock Grid.Column="1" Text="{Binding PlayerText}" Foreground="#8BD6BE" />
+                        <TextBlock Grid.Row="1" Text="{Binding Mode}" Classes="muted" FontSize="14" TextTrimming="CharacterEllipsis" />
+                        <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding PingText}" Classes="muted" FontSize="14" />
+                        <TextBlock Grid.Row="2" Text="{Binding Map}" Classes="muted" FontSize="14" TextTrimming="CharacterEllipsis" />
+                        <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding CompatibilityText}" FontSize="14" Classes="muted" />
+                      </Grid>
+                    </DataTemplate></ListBox.ItemTemplate>
+                  </ListBox>
+                  <TextBlock Grid.Row="2" Name="BrowserEmptyState" Text="Список пуст. Обновите список, измените фильтры или добавьте адрес ниже." TextWrapping="Wrap" Classes="muted" Margin="10" />
+                </Grid>
+              </Border>
+              <Border Name="BrowserDetailPanel" Grid.Column="1" Classes="card" Padding="16">
+                <StackPanel Spacing="12">
+                  <TextBlock Text="ВЫБРАННЫЙ СЕРВЕР" Classes="eyebrow" LetterSpacing="1" />
+                  <TextBlock Name="SelectedServerName" Text="Выберите сервер" FontSize="23" FontWeight="SemiBold" TextWrapping="Wrap" />
+                  <ScrollViewer MaxHeight="160" VerticalScrollBarVisibility="Auto"><StackPanel Spacing="8"><TextBlock Name="SelectedServerFacts" TextWrapping="Wrap" Classes="muted" FontSize="14" />
+                  <TextBlock Text="Требуемый аддон: неизвестно" FontSize="14" />
+                  <TextBlock Name="SelectedServerCompatibility" Text="Совместимость не проверена: QR2 не сообщает идентификатор аддона." TextWrapping="Wrap" Classes="muted" FontSize="14" />
+                  </StackPanel></ScrollViewer>
+                  <TextBlock Text="Способ подключения" FontWeight="SemiBold" /><Grid ColumnDefinitions="*,*" ColumnSpacing="8"><Button Name="BrowserSteamChoice" Content="Steam" Classes="transport" Tag="1" Click="ChooseConnectionMethod" IsEnabled="{Binding #NetworkMode.IsEnabled}" /><Button Name="BrowserIpChoice" Grid.Column="1" Content="По IP" Classes="transport" Tag="0" Click="ChooseConnectionMethod" IsEnabled="{Binding #NetworkMode.IsEnabled}" /></Grid>
+                  <ComboBox Name="BrowserTransport" IsVisible="False" IsEnabled="{Binding #NetworkMode.IsEnabled}" SelectedIndex="0" SelectionChanged="BrowserTransportChanged" HorizontalAlignment="Stretch"><ComboBoxItem Content="По IP" /><ComboBoxItem Content="Steam — приглашение" /></ComboBox>
+                  <TextBlock Name="BrowserConnectionReason" TextWrapping="Wrap" FontSize="15" /><Button Name="BrowserFixButton" Content="Выбрать аддон" IsVisible="False" Click="OpenReadinessAction" HorizontalAlignment="Left" /><Button Name="BrowserConnectButton" Content="Подключиться" Classes="primary" Click="ConnectBrowserServer" IsEnabled="False" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" />
+                  <Button Name="BrowserFavoriteButton" Content="В избранное" Click="FavoriteBrowserServer" IsEnabled="False" HorizontalAlignment="Stretch" />
+                  <WrapPanel><Button Content="Удалить адрес" Click="RemoveBrowserServer" Padding="10,8" Margin="0,0,8,0" /><Button Classes="help" Content="?" Tag="QR2 сообщает карту, режим, игроков и время ответа. Аддон и его совместимость так не определяются. Steam открывает меню для приглашения и не подключает автоматически к строке списка. При IP без ответа QR2 игра может быть недоступна." ToolTip.Tip="Почему сервер может быть недоступен?" Click="ShowContextHelp" /></WrapPanel>
+                </StackPanel>
+              </Border>
+            </Grid>
+            <TextBlock Name="PlayerServerDetails" Classes="muted" FontSize="14" />
+            <TextBlock Name="PlayerBrowserStatus" Classes="muted" FontSize="14" TextWrapping="Wrap" />
+            <TextBlock Name="PlayerCatalogNotice" Classes="muted" FontSize="14" TextWrapping="Wrap" />
+            <TextBlock Name="BrowserDetails" Classes="muted" FontSize="14" />
+              <TextBlock Name="BrowserStatus" Text="Обновите список, чтобы проверить доступные серверы." Classes="muted" FontSize="14" TextWrapping="Wrap" />
+              <Expander Name="CatalogSettingsPanel" Header="Глобальный каталог и публикация сервера" IsExpanded="False" IsVisible="False">
+                <StackPanel Spacing="10" Margin="0,10">
+                  <TextBox Name="CatalogAddress" Watermark="https://ваш-каталог.workers.dev" ToolTip.Tip="Адрес отдельного сервиса каталога. GitHub используется только для обновлений." />
+                  <WrapPanel><TextBlock Text="Резервный API" Classes="muted" FontSize="14" Margin="0,0,10,0" /><Button Classes="help" Content="?" Tag="Резервный каталог используется при сетевой ошибке основного. Публикации независимы. Изменения адресов требуют подтверждения; сброс не удаляет данные на сервере и не открывает порты." ToolTip.Tip="Как работает резервный каталог и публикация?" Click="ShowContextHelp" /></WrapPanel>
+                  <TextBox Name="CatalogBackupAddress" Watermark="HTTPS-адрес после развёртывания резервного API" ToolTip.Tip="Пустое поле отключает резерв. Это отдельный API, не GitHub. Публикация выполняется в оба каталога независимо." />
+                  <CheckBox Name="AdvertiseInternet" Content="Показывать мой dedicated в Интернете" ToolTip.Tip="Публикует внешний IPv4, игровые/query-порты и транспорт. Включите и сохраните перед запуском сервера. Порты и брандмауэр автоматически не открываются." />
+                                    <WrapPanel><Button Name="CatalogSaveButton" Content="Проверить и сохранить настройки" Click="SaveCatalog" Margin="0,0,8,8" /><Button Name="CatalogDefaultsButton" Content="Восстановить значения по умолчанию" Click="ResetCatalogDefaults" Margin="0,0,0,8" /></WrapPanel>
+                  <Border Name="CatalogChangeConfirmation" IsVisible="False" Background="#202E43" BorderBrush="#FFB47D" BorderThickness="1" Padding="14">
+                    <StackPanel Spacing="12"><TextBlock Name="CatalogChangeText" TextWrapping="Wrap" FontSize="14" /><WrapPanel><Button Name="CatalogConfirmButton" Content="Подтвердить изменения" Classes="primary" Click="ConfirmCatalogEdit" Margin="0,0,8,8" /><Button Name="CatalogCancelButton" Content="Отмена" Click="CancelCatalogEdit" Margin="0,0,0,8" /></WrapPanel></StackPanel>
+                  </Border>
+                  <TextBlock Name="CatalogSourceStatus" Text="Источник ещё не проверен. Основной → резерв при сетевом отказе; успешные списки объединяются без дублей." TextWrapping="Wrap" Classes="muted" FontSize="14" />
+                  <TextBlock Name="CatalogStatus" Text="Внешний каталог пока не настроен. Для прямого подключения могут понадобиться публичный IPv4 и проброс UDP-портов. Steam работает через прежние приглашения, автоматического вступления из каталога нет." TextWrapping="Wrap" Classes="muted" FontSize="14" />
+                </StackPanel>
+              </Expander>
+            <Expander Name="ManualIpExpander" Header="Добавить сервер по IP / домену" IsExpanded="False">
+              <StackPanel Spacing="10" Margin="0,10">
+                <TextBox Name="ManualServerHost" Watermark="IPv4, домен или localhost" />
+                <Grid ColumnDefinitions="*,*" RowDefinitions="Auto,Auto" ColumnSpacing="12" RowSpacing="6">
+                  <TextBlock Text="Порт игры" /><TextBlock Name="ManualQueryLabel" Grid.Column="1" Text="Query-порт UDP" />
+                  <NumericUpDown Name="ManualServerPort" Grid.Row="1" Minimum="1" Maximum="65535" Value="5446" FormatString="0" />
+                  <NumericUpDown Name="ManualQueryPort" Grid.Row="1" Grid.Column="1" Minimum="1" Maximum="65535" Value="5445" FormatString="0" />
+                </Grid>
+                <Button Name="ManualSaveServerButton" Content="Сохранить адрес" Click="AddBrowserServer" HorizontalAlignment="Left" />
+                <TextBlock Text="Query-порт может отличаться от игрового. Если статистика отключена или порт закрыт, данные останутся неизвестными. Steam-серверы подключаются через приглашение внутри игры." Classes="muted" FontSize="14" />
+              </StackPanel>
+            </Expander>
+          </StackPanel>
+          <StackPanel Name="WorkshopPage" IsVisible="False" Spacing="18">
+            <Border Classes="card" Padding="22" BorderBrush="#5F6840">
+              <StackPanel Spacing="12">
+                <Grid ColumnDefinitions="*,Auto" ColumnSpacing="16">
+                    <StackPanel Spacing="5"><TextBlock Text="КОЛЛЕКЦИЯ / xrMPE PvP" Classes="eyebrow" /><TextBlock Text="Светящиеся 3D-повязки ZoneLink" Classes="heading" /></StackPanel>
+                  <Border Grid.Column="1" Background="#263222" CornerRadius="8" Padding="14,9" VerticalAlignment="Center"><StackPanel><TextBlock Text="30" FontSize="26" Foreground="#B6FF00" FontWeight="SemiBold" HorizontalAlignment="Center" /><TextBlock Text="костюмов" Classes="muted" FontSize="12" /></StackPanel></Border>
+                </Grid>
+                 <TextBlock Text="Светящиеся 3D-повязки видны только на вашем PvP-клиенте. При первом включении ZoneLink автоматически соберёт их из установленной игры." Classes="muted" />
+                  <ToggleSwitch Name="ArmbandsToggle" OnContent="Включено" OffContent="Выключено" IsCheckedChanged="ArmbandsChanged" HorizontalAlignment="Left" />
+              <TextBlock Name="ArmbandsStatus" TextWrapping="Wrap" />
+              <ProgressBar Name="ArmbandsProgress" Minimum="0" Maximum="100" Height="7" IsVisible="False" />
+              <StackPanel Orientation="Horizontal" Spacing="8"><Button Name="ArmbandsRetry" Content="Повторить" Click="RetryArmbands" IsVisible="False" /><Button Name="ArmbandsOpenLog" Content="Открыть журнал" Click="OpenArmbandsLog" IsVisible="False" /></StackPanel>
+                <TextBlock Text="Применится при следующем запуске, в том числе через Steam. Оригинальные архивы не заменяются. Сервер запускается без оформления." Classes="muted" FontSize="13" />
+              </StackPanel>
+            </Border>
+            <Border Name="WorkshopNotification" Classes="notice" IsVisible="False"><TextBlock Name="WorkshopNotificationText" TextWrapping="Wrap" /></Border>
+            <StackPanel Name="WorkshopCatalogPanel" Spacing="14">
+              <Grid ColumnDefinitions="*,Auto" ColumnSpacing="14"><TextBox Name="WorkshopSearch" Watermark="Найти костюм…" TextChanged="FilterWorkshop" /><TextBlock Name="WorkshopCount" Grid.Column="1" VerticalAlignment="Center" Classes="muted" /></Grid>
+              <WrapPanel Name="WorkshopFilters" />
+              <WrapPanel Name="WorkshopCards" />
+              <TextBlock Name="WorkshopEmpty" Text="Ничего не найдено. Попробуйте другое название или категорию." Classes="muted" IsVisible="False" />
+            </StackPanel>
+            <StackPanel Name="WorkshopDetailPanel" IsVisible="False" Spacing="14">
+              <Grid ColumnDefinitions="*,Auto" ColumnSpacing="12"><Button Content="← Все костюмы" Click="BackToWorkshop" HorizontalAlignment="Left" /><StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="8"><Button Name="WorkshopPrevious" Content="←" Click="PreviousWorkshop" ToolTip.Tip="Предыдущий костюм" /><Button Name="WorkshopNext" Content="→" Click="NextWorkshop" ToolTip.Tip="Следующий костюм" /></StackPanel></Grid>
+              <Border Classes="card" Padding="18"><StackPanel Spacing="14">
+                <StackPanel Spacing="4"><TextBlock Name="WorkshopDetailFamily" Classes="eyebrow" /><TextBlock Name="WorkshopDetailTitle" FontSize="26" FontWeight="SemiBold" /><TextBlock Name="WorkshopDetailState" Foreground="#B6FF00" /></StackPanel>
+                <Border CornerRadius="8" Background="#111A23" ClipToBounds="True">
+                  <Grid Height="420"><Image Name="WorkshopPreview" Stretch="Uniform" /><TextBlock Name="WorkshopPreviewMissing" Text="Предпросмотр отсутствует в этом комплекте" Classes="muted" HorizontalAlignment="Center" VerticalAlignment="Center" /><Border VerticalAlignment="Bottom" HorizontalAlignment="Left" Background="#D916202C" Padding="12,7" CornerRadius="0,8,0,0"><TextBlock Name="WorkshopAngleLabel" FontSize="13" /></Border></Grid>
+                </Border>
+                <UniformGrid Name="WorkshopAngles" Columns="4" />
+                <TextBlock Name="WorkshopDetailNote" Classes="muted" />
+                <TextBlock Text="Статический предпросмотр реальной модели. Анимации, освещение и LOD в игре могут отличаться. Выбор карточки меняет предпросмотр; установка применяет весь комплект." Classes="muted" FontSize="13" />
+              </StackPanel></Border>
+            </StackPanel>
+            <Expander Header="Об оформлении и совместимости">
+              <StackPanel Spacing="10" Margin="0,12">
+                <TextBlock Text="Тканевый вариант меняет DDS. 3D-вариант добавляет отдельные поверхности с материалом models/selflightl, без подсветки всей одежды. В игре подтверждена только первая стартовая форма; остальные модели ожидают проверки." Classes="muted" />
+                <TextBlock Text="Оба локальных пакета предназначены для xrMPE PvP 1.4.7. Права на публичное распространение игровых OGF/DDS пока не подтверждены." Classes="muted" />
+                <Button Content="Перейти к игровому контенту →" Click="Navigate" Tag="6" HorizontalAlignment="Left" />
+              </StackPanel>
+            </Expander>
+          </StackPanel>
+          <StackPanel Name="SettingsPage" IsVisible="False" Spacing="18"><CheckBox Name="AdvancedIpToggle" Content="Расширенное подключение по IP" IsChecked="False" IsCheckedChanged="AdvancedIpChanged" />
+            <TextBlock Text="Настройки" FontWeight="SemiBold" Classes="heading" />
+            <TextBlock Text="Основные" Classes="section" />
+            <Border Classes="card">
+              <StackPanel Spacing="10">
+                <TextBlock Text="Папка игры" FontWeight="SemiBold" />
+                <Grid ColumnDefinitions="*,Auto" ColumnSpacing="10">
+                  <TextBox Name="GamePath" Watermark="Папка установки или game" LostFocus="PathChanged" />
+                  <Button Name="SelectGameFolderButton" Grid.Column="1" Content="Выбрать папку игры" Click="Browse" />
+                </Grid>
+                <TextBlock Name="GameFolderStatus" Text="Выберите папку game или папку установки." Classes="muted" FontSize="14" TextWrapping="Wrap" />
+              </StackPanel>
+            </Border>
+            <Border Classes="card">
+              <StackPanel Spacing="13">
+                <TextBlock Text="Сеть и приглашения" Classes="section" />
+                <TextBlock Text="Способ подключения — Steam или IP — выбирается в разделе «Подключиться» и используется для клиента и сервера." Classes="muted" />
+                <TextBlock Text="Подключение второго игрока через приглашение Spacewar подтверждено пользователем в локальной сети. Проверка через интернет остаётся отдельным шагом." Classes="muted" />
+                <TextBlock Text="Настройки пути сохраняются отдельно для этого компьютера. История адресов и настройки обновлений остаются доступными после обновления лаунчера." Classes="muted" />
+              </StackPanel>
+            </Border>
+            <Border Classes="card">
+              <StackPanel Spacing="12">
+                <TextBlock Text="Внешний вид" Classes="section" /><TextBlock Text="Анимации интерфейса" /><ComboBox Name="AnimationMode" SelectedIndex="1" SelectionChanged="AnimationModeChanged" HorizontalAlignment="Stretch"><ComboBoxItem Content="Выключены" /><ComboBoxItem Content="Умеренные" /><ComboBoxItem Content="Полные" /></ComboBox><TextBlock Name="MotionStatus" Classes="muted" FontSize="14" TextWrapping="Wrap" />
+                <TextBlock Text="Масштаб интерфейса следует настройке экрана Windows. Окно можно изменять по размеру; длинные страницы прокручиваются. Журнал сохраняет последние 1000 строк и обновляется пакетами." Classes="muted" />
+              </StackPanel>
+            </Border>
+            <Border Classes="card"><StackPanel Spacing="12">
+              <ToggleSwitch Name="DeveloperModeToggle" Content="Режим разработчика" OnContent="Вкл." OffContent="Выкл." IsChecked="False" IsCheckedChanged="DeveloperModeChanged" />
+              <TextBlock Name="InterfaceStatus" TextWrapping="Wrap" Classes="muted" FontSize="14" />
+              <Border Name="DeveloperEnableConfirmation" IsVisible="False" Padding="14" Background="#202E43" BorderBrush="#FFB47D" BorderThickness="1">
+                <StackPanel Spacing="12">
+                  <TextBlock Text="Режим разработчика открывает расширенные настройки сети, каталогов серверов и диагностики. Неправильные изменения могут нарушить подключение к серверам. Включайте его только при понимании назначения параметров" TextWrapping="Wrap" FontSize="15" />
+                  <WrapPanel><Button Name="ConfirmDeveloperButton" Content="Включить" Classes="primary" Click="ConfirmDeveloperMode" Margin="0,0,8,8" /><Button Name="CancelDeveloperButton" Content="Отмена" Click="CancelDeveloperMode" Margin="0,0,0,8" /></WrapPanel>
+                </StackPanel>
+              </Border>
+            </StackPanel></Border>
+            <StackPanel Name="DeveloperSettingsSection" IsVisible="False" Spacing="14">
+              <TextBlock Text="Разработчик" Classes="section" />
+              <Border Classes="card"><StackPanel Spacing="12">
+                <TextBlock Text="Глобальный каталог серверов" FontSize="19" FontWeight="SemiBold" />
+                <TextBlock Text="Основной и резервный API, состояние источников и разрешение публикации находятся в разделе «Серверы». Изменения требуют подтверждения." TextWrapping="Wrap" Classes="muted" />
+                <Button Content="Открыть настройки каталогов" Click="OpenDeveloperCatalog" HorizontalAlignment="Left" />
+                <TextBlock Text="{Binding #CatalogSourceStatus.Text}" TextWrapping="Wrap" Classes="muted" FontSize="14" />
+              </StackPanel></Border>
+              <Border Classes="card"><StackPanel Spacing="12">
+                <TextBlock Text="Сеть и диагностика" FontSize="19" FontWeight="SemiBold" />
+                <TextBlock Text="{Binding #BrowserStatus.Text}" TextWrapping="Wrap" Classes="muted" />
+                <TextBlock Text="{Binding #BrowserDetails.Text}" TextWrapping="Wrap" Classes="muted" />
+                <TextBlock Text="Heartbeat, TTL и повторные запросы управляются сетевым ядром. Редактирование этих параметров не поддерживается." TextWrapping="Wrap" Classes="muted" FontSize="14" />
+                <TextBlock Text="Расширенный журнал доступен внизу окна. Перед передачей диагностики используйте безопасную сводку: она не содержит журнал, адреса, пути и секреты." TextWrapping="Wrap" Classes="muted" />
+                <Button Name="CopyDiagnosticsButton" Content="Копировать безопасную диагностику" Click="CopySafeDiagnostics" HorizontalAlignment="Left" />
+                <TextBlock Name="DiagnosticCopyStatus" TextWrapping="Wrap" Classes="muted" />
+              </StackPanel></Border>
+            </StackPanel>
+          </StackPanel>
+          <StackPanel Name="UpdatesPage" IsVisible="False" Spacing="14">
+            <TextBlock Text="Обновления файлов" FontWeight="SemiBold" Classes="heading" />
+            <TextBlock Text="Обновление файлов · только новые и изменённые файлы" Classes="muted" />
+            <Border Classes="card"><StackPanel Spacing="12">
+              <TextBlock Text="ОБНОВЛЕНИЕ САМОГО ЛАУНЧЕРА" Classes="eyebrow" />
+              <ComboBox Name="LauncherUpdateSource" SelectedIndex="0" SelectionChanged="LauncherSourceChanged" HorizontalAlignment="Stretch">
+                <ComboBoxItem Content="Интернет — GitHub Releases" /><ComboBoxItem Content="Локальная сеть / VPN — HTTP" />
+              </ComboBox>
+              <StackPanel Name="GitHubFields" Spacing="8">
+                <StackPanel Name="GitHubRepositoryEditor" IsVisible="False" Spacing="8">
+                  <TextBlock Text="Публичный репозиторий обновлений" /><TextBox Name="GitHubRepository" Text="OWNER/REPOSITORY" Watermark="владелец/репозиторий" LostFocus="GitHubRepositoryChanged" />
+                  <Border Name="RepositoryChangeConfirmation" IsVisible="False" Padding="14" Background="#202E43" BorderBrush="#FFB47D" BorderThickness="1"><StackPanel Spacing="10"><TextBlock Name="RepositoryChangeText" TextWrapping="Wrap" /><WrapPanel><Button Name="ConfirmRepositoryButton" Content="Изменить источник" Classes="primary" Click="ConfirmRepositoryEdit" Margin="0,0,8,8" /><Button Name="CancelRepositoryButton" Content="Отмена" Click="CancelRepositoryEdit" Margin="0,0,0,8" /></WrapPanel></StackPanel></Border>
+                </StackPanel>
+                <TextBlock Text="HTTPS · подпись издателя · аккаунт GitHub не нужен. Установка — по кнопке, игровые файлы обновляются отдельно через LAN/VPN." Classes="muted" FontSize="14" />
+              </StackPanel>
+              <TextBlock Name="LauncherUpdateStatus" Text="Версия 0.3.0 · проверка только по вашей команде. Игровые файлы проверяются отдельно. Используются адрес, порт и токен ниже." Classes="muted" />
+              <ScrollViewer MaxHeight="180" VerticalScrollBarVisibility="Auto"><TextBlock Name="LauncherReleaseNotes" TextWrapping="Wrap" /></ScrollViewer>
+              <WrapPanel><Button Name="CheckLauncherButton" Content="Проверить обновления лаунчера" Click="CheckLauncherUpdate" Margin="0,0,8,8" /><Button Name="ApplyLauncherButton" Content="Обновить лаунчер" Classes="primary" Click="ApplyLauncherUpdate" IsEnabled="False" Margin="0,0,0,8" /></WrapPanel>
+              <StackPanel Name="LauncherTransfer" IsVisible="False" Spacing="8">
+                <ProgressBar Value="{Binding #UpdateBar.Value}" Minimum="0" Maximum="100" Height="8" />
+                <TextBlock Text="{Binding #UpdateStatus.Text}" Classes="muted" />
+                <Button Content="Отменить загрузку / оставить для докачки" Click="CancelUpdates" HorizontalAlignment="Left" />
+              </StackPanel>
+            </StackPanel></Border>
+            <Border Classes="card" Padding="18"><StackPanel Name="UpdateFields" Spacing="8">
+              <TextBlock Text="LAN / VPN — ИГРОВЫЕ ОБНОВЛЕНИЯ И ЛОКАЛЬНАЯ РАЗДАЧА" Classes="eyebrow" />
+              <Grid ColumnDefinitions="*,140" ColumnSpacing="12"><StackPanel Spacing="5"><TextBlock Text="Адрес хоста обновлений" /><TextBox Name="UpdateAddress" Text="127.0.0.1" Watermark="IPv4 или домен, без http://" /></StackPanel><StackPanel Grid.Column="1" Spacing="5"><TextBlock Text="HTTP-порт" /><NumericUpDown Name="UpdatePort" Minimum="1024" Maximum="65535" Value="8787" FormatString="0" /></StackPanel></Grid>
+              <TextBlock Text="Токен обязателен: вставьте токен хоста или создайте новый для своей раздачи." Classes="muted" FontSize="14" />
+              <Grid ColumnDefinitions="*,Auto,Auto" ColumnSpacing="8"><TextBox Name="UpdateToken" PasswordChar="●" Watermark="16–128 латинских букв/цифр" /><Button Grid.Column="1" Content="Новый токен" Click="GenerateUpdateToken" /><Button Grid.Column="2" Content="Копировать" Click="CopyUpdateToken" /></Grid>
+              <Expander Header="Настройки раздачи на этом ПК (хост)" HorizontalAlignment="Stretch"><StackPanel Spacing="10">
+                <TextBlock Text="Токен не сохраняется на диск. HTTP не шифрует передачу: используйте доверенную LAN/VPN." Classes="muted" />
+                <Grid ColumnDefinitions="*,*" ColumnSpacing="12"><StackPanel Spacing="5"><TextBlock Text="Локальный IPv4 для прослушивания" /><TextBox Name="UpdateBind" Text="127.0.0.1" /></StackPanel><StackPanel Grid.Column="1" Spacing="5"><TextBlock Text="Лимит раздачи, КиБ/с (суммарно)" TextWrapping="Wrap" /><NumericUpDown Name="UploadLimit" Minimum="64" Maximum="1048576" Value="2048" FormatString="0" /></StackPanel></Grid>
+                <CheckBox Name="AllowRemoteUpdates"><TextBlock Text="Разрешить подключение других компьютеров к раздаче (LAN / VPN)" TextWrapping="Wrap" /></CheckBox>
+                <CheckBox Name="ShareLauncherUpdates"><TextBlock Text="Также раздавать новую версию лаунчера" TextWrapping="Wrap" /></CheckBox>
+                <Grid Name="DeveloperPackageFields" IsVisible="False" ColumnDefinitions="*,Auto" ColumnSpacing="10"><TextBox Name="LauncherPackagePath" Watermark="Папка публикации с launcher-release.json" /><Button Grid.Column="1" Content="Выбрать публикацию" Click="BrowseLauncherPackage" /></Grid>
+              </StackPanel></Expander>
+            </StackPanel></Border>
+
+            <Border Classes="card" Padding="18"><StackPanel Spacing="12">
+              <TextBlock Text="СОСТОЯНИЕ ПЕРЕДАЧИ" Classes="eyebrow" />
+              <ProgressBar Name="UpdateBar" Minimum="0" Maximum="100" Height="8" />
+              <TextBlock Name="UpdateStatus" Text="Сначала закройте игру и dedicated. Хост делится только разрешёнными игровыми файлами из выбранной папки." TextWrapping="Wrap" />
+            </StackPanel></Border>
+            <WrapPanel Orientation="Horizontal">
+              <Button Name="CheckUpdatesButton" Content="Проверить обновления" Click="CheckUpdates" Margin="0,0,8,8" />
+              <Button Name="ApplyUpdatesButton" Content="Скачать и установить" Classes="primary" Click="ApplyUpdates" IsEnabled="False" Margin="0,0,8,8" />
+              <Button Name="CancelUpdatesButton" Content="Отменить / оставить для докачки" Click="CancelUpdates" IsEnabled="False" Margin="0,0,8,8" />
+              <Button Name="HostUpdatesButton" Content="Раздавать обновления" Click="HostUpdates" Margin="0,0,8,8" />
+              <Button Name="StopUpdatesButton" Content="Остановить раздачу" Click="StopUpdates" IsEnabled="False" Margin="0,0,8,8" />
+            </WrapPanel>
+            <Border Background="#202E43" BorderBrush="#4D79B8" BorderThickness="1" Padding="14" CornerRadius="4">
+              <StackPanel Spacing="6">
+                <TextBlock Text="SHA-256 / КОНТРОЛЬ ЦЕЛОСТНОСТИ" Classes="eyebrow" />
+                <TextBlock Text="Загрузка во временную папку → проверка SHA-256 → замена файла. После обрыва доступна докачка." Classes="muted" />
+              </StackPanel>
+            </Border>
+            <TextBox Name="UpdatePlanDetails" IsReadOnly="True" AcceptsReturn="True" MaxHeight="180" TextWrapping="NoWrap" Watermark="После проверки здесь появится список изменённых файлов (до 200 строк)." />
+            <TextBlock Text="Проверка показывает объём перед установкой. Пользовательские сохранения и настройки не раздаются. Файлы вне манифеста не удаляются. Передавайте только файлы, которые вы вправе распространять." Classes="muted" TextWrapping="Wrap" />
+          </StackPanel>
+        </StackPanel>
+      </ScrollViewer>
+      <Border Grid.Row="2" Classes="card" Padding="14" Background="#151C29" BorderBrush="#303E56">
+        <Grid RowDefinitions="Auto,*">
+          <Grid ColumnDefinitions="*,Auto,Auto,Auto" ColumnSpacing="8">
+            <Button Name="JournalToggle" Content="Показать журнал" Click="ToggleJournal" HorizontalAlignment="Left" Padding="8,5" MinHeight="32" FontSize="14" />
+            <Button Name="StopServerButton" Grid.Column="1" Content="Остановить сервер" IsEnabled="False" Padding="10,6" Click="StopServer" FontSize="14" MinHeight="32" />
+            <Button Grid.Column="2" Name="CopyJournalButton" Content="Копировать" Click="CopyJournal" Padding="10,6" FontSize="14" MinHeight="32" /><Button Grid.Column="3" Content="Очистить журнал" Padding="10,6" Click="ClearLog" FontSize="14" MinHeight="32" />
+          </Grid>
+          <ListBox Grid.Row="1" Name="RichLogList" IsVisible="False" Height="120" Margin="0,10,0,0" SelectionMode="Multiple" ScrollViewer.HorizontalScrollBarVisibility="Auto"><ListBox.ItemTemplate><DataTemplate><TextBlock Text="{Binding Text}" Foreground="{Binding Color}" FontFamily="Consolas" FontSize="13" /></DataTemplate></ListBox.ItemTemplate></ListBox><TextBox Grid.Row="1" Name="LogBox" IsVisible="False" Margin="0,10,0,0" IsReadOnly="True" AcceptsReturn="True" TextWrapping="NoWrap" FontFamily="Consolas" FontSize="14" Background="#101622" Foreground="#A9BDD9" BorderBrush="#303E56" Height="100" MinHeight="70" />
+        </Grid>
+      </Border>
+    </Grid>
+  </Grid>
+</Window>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

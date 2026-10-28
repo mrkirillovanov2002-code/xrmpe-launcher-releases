@@ -1,0 +1,52 @@
+<Styles xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <Styles.Resources>
+    <SolidColorBrush x:Key="PdaBackground">#0B0F14</SolidColorBrush>
+    <SolidColorBrush x:Key="PdaPanel">#E81B2633</SolidColorBrush>
+    <SolidColorBrush x:Key="PdaLine">#354350</SolidColorBrush>
+    <SolidColorBrush x:Key="PdaText">#E8EDF2</SolidColorBrush>
+    <SolidColorBrush x:Key="PdaMuted">#AEBBC7</SolidColorBrush>
+    <SolidColorBrush x:Key="PdaAmber">#FF8A3C</SolidColorBrush>
+    <SolidColorBrush x:Key="PdaOlive">#32C76A</SolidColorBrush>
+  </Styles.Resources>
+  <Style Selector="Window"><Setter Property="FontFamily" Value="Segoe UI" /><Setter Property="FontSize" Value="16" /><Setter Property="Background" Value="{StaticResource PdaBackground}" /></Style>
+  <Style Selector="TextBlock"><Setter Property="Foreground" Value="{StaticResource PdaText}" /></Style>
+  <Style Selector="TextBlock.muted"><Setter Property="Foreground" Value="{StaticResource PdaMuted}" /><Setter Property="TextWrapping" Value="Wrap" /></Style>
+  <Style Selector="TextBlock.eyebrow"><Setter Property="Foreground" Value="{StaticResource PdaAmber}" /><Setter Property="FontSize" Value="11" /><Setter Property="LetterSpacing" Value="2" /><Setter Property="FontWeight" Value="SemiBold" /></Style>
+  <Style Selector="TextBlock.heading"><Setter Property="FontSize" Value="30" /><Setter Property="FontWeight" Value="SemiBold" /></Style>
+  <Style Selector="TextBlock.section"><Setter Property="FontSize" Value="19" /><Setter Property="FontWeight" Value="SemiBold" /></Style>
+  <Style Selector="Border.card"><Setter Property="Background" Value="{StaticResource PdaPanel}" /><Setter Property="BorderBrush" Value="{StaticResource PdaLine}" /><Setter Property="BorderThickness" Value="1" /><Setter Property="CornerRadius" Value="12" /><Setter Property="Padding" Value="20" /></Style>
+  <Style Selector="Button"><Setter Property="CornerRadius" Value="8" /><Setter Property="Padding" Value="16,11" /><Setter Property="MinHeight" Value="46" /><Setter Property="Cursor" Value="Hand" /><Setter Property="Background" Value="#273248" /><Setter Property="Foreground" Value="{StaticResource PdaText}" /><Setter Property="BorderBrush" Value="#3C4C69" /><Setter Property="BorderThickness" Value="1" /><Setter Property="Transitions"><Transitions><BrushTransition Property="Background" Duration="0:0:0.16" /><BrushTransition Property="BorderBrush" Duration="0:0:0.16" /></Transitions></Setter></Style>
+  <Style Selector="Button:pointerover /template/ ContentPresenter#PART_ContentPresenter"><Setter Property="Background" Value="#344967" /><Setter Property="BorderBrush" Value="{StaticResource PdaAmber}" /></Style>
+  <Style Selector="Button.primary"><Setter Property="Background" Value="{StaticResource PdaAmber}" /><Setter Property="Foreground" Value="#19130E" /><Setter Property="BorderBrush" Value="#FFBA86" /><Setter Property="FontWeight" Value="SemiBold" /></Style>
+  <Style Selector="Button.primary:pointerover /template/ ContentPresenter#PART_ContentPresenter"><Setter Property="Background" Value="#FFA365" /><Setter Property="Foreground" Value="#19130E" /></Style>
+  <Style Selector="Button.launch"><Setter Property="FontSize" Value="19" /><Setter Property="Padding" Value="28,17" /><Setter Property="MinHeight" Value="60" /></Style>
+  <Style Selector="Button.nav"><Setter Property="HorizontalAlignment" Value="Stretch" /><Setter Property="HorizontalContentAlignment" Value="Left" /><Setter Property="Background" Value="Transparent" /><Setter Property="BorderBrush" Value="Transparent" /><Setter Property="Padding" Value="14,13" /><Setter Property="Foreground" Value="#AEBBC7" /></Style>
+  <Style Selector="Button.nav.selected"><Setter Property="Background" Value="#382A20" /><Setter Property="BorderBrush" Value="#C36C34" /><Setter Property="Foreground" Value="#FFB47D" /></Style>
+  <Style Selector="TextBox"><Setter Property="CornerRadius" Value="8" /><Setter Property="Padding" Value="12,10" /><Setter Property="MinHeight" Value="46" /><Setter Property="Background" Value="#111824" /><Setter Property="BorderBrush" Value="#3C4C69" /><Setter Property="Foreground" Value="{StaticResource PdaText}" /><Setter Property="SelectionBrush" Value="#405E8A" /></Style>
+  <Style Selector="NumericUpDown"><Setter Property="MinHeight" Value="46" /><Setter Property="Background" Value="#111824" /><Setter Property="BorderBrush" Value="#3C4C69" /></Style>
+  <Style Selector="ComboBox"><Setter Property="MinHeight" Value="46" /><Setter Property="Padding" Value="12,9" /><Setter Property="Background" Value="#202B3D" /><Setter Property="BorderBrush" Value="#3C4C69" /></Style>
+  <Style Selector="ProgressBar"><Setter Property="Foreground" Value="{StaticResource PdaAmber}" /><Setter Property="Background" Value="#273248" /></Style>
+  <Style Selector="ToolTip"><Setter Property="FontSize" Value="15" /><Setter Property="MaxWidth" Value="380" /></Style>
+  <Style Selector="ListBox"><Setter Property="Background" Value="{StaticResource PdaPanel}" /><Setter Property="BorderThickness" Value="0" /></Style>
+  <Style Selector="ListBoxItem"><Setter Property="HorizontalContentAlignment" Value="Stretch" /><Setter Property="Padding" Value="12,4" /></Style>
+  <Style Selector="ListBoxItem:selected"><Setter Property="Background" Value="#503729" /></Style>
+  <Style Selector="TabItem:selected"><Setter Property="Foreground" Value="{StaticResource PdaAmber}" /></Style>
+  <Style Selector="Button.help"><Setter Property="Width" Value="32" /><Setter Property="Height" Value="32" /><Setter Property="MinWidth" Value="32" /><Setter Property="MinHeight" Value="32" /><Setter Property="Padding" Value="6,3" /><Setter Property="CornerRadius" Value="6" /><Setter Property="FontSize" Value="15" /><Setter Property="FontWeight" Value="SemiBold" /><Setter Property="Background" Value="Transparent" /><Setter Property="BorderBrush" Value="Transparent" /><Setter Property="VerticalAlignment" Value="Center" /></Style>
+  <Style Selector="FlyoutPresenter"><Setter Property="MaxWidth" Value="390" /><Setter Property="Background" Value="#202C40" /><Setter Property="BorderBrush" Value="#5276AA" /><Setter Property="CornerRadius" Value="12" /></Style>
+  <Style Selector="ToolTip"><Setter Property="FontSize" Value="15" /><Setter Property="Background" Value="#202C40" /><Setter Property="Foreground" Value="#E8EDF2" /><Setter Property="CornerRadius" Value="8" /></Style>
+<Style Selector="Window.motionOff Button"><Setter Property="Transitions" Value="{x:Null}" /></Style><Style Selector="Window.motionOff Button /template/ ContentPresenter#PART_ContentPresenter"><Setter Property="Transitions" Value="{x:Null}" /></Style><Style Selector="ListBoxItem:selected /template/ ContentPresenter#PART_ContentPresenter"><Setter Property="Background" Value="#503729" /></Style><Style Selector="Popup"><Setter Property="ShouldUseOverlayLayer" Value="True" /></Style><Style Selector="Button.transport"><Setter Property="MinHeight" Value="50" /><Setter Property="HorizontalAlignment" Value="Stretch" /><Setter Property="HorizontalContentAlignment" Value="Center" /><Setter Property="Background" Value="#17212B" /><Setter Property="BorderBrush" Value="#3B5472" /><Setter Property="Padding" Value="16,12" /></Style>
+<Style Selector="Button.transport.selected"><Setter Property="Background" Value="#553B28" /><Setter Property="BorderBrush" Value="#FF9D55" /></Style>
+<Style Selector="Button.transport.selected /template/ ContentPresenter#PART_ContentPresenter"><Setter Property="Background" Value="#553B28" /><Setter Property="BorderBrush" Value="#FF9D55" /></Style>
+<Style Selector="Border.notice"><Setter Property="Background" Value="#192E43" /><Setter Property="BorderBrush" Value="#3C6284" /><Setter Property="BorderThickness" Value="1" /><Setter Property="CornerRadius" Value="10" /><Setter Property="Padding" Value="16" /></Style><Style Selector="TabItem"><Setter Property="FontSize" Value="16" /><Setter Property="Padding" Value="12,10" /></Style><Style Selector="Button.nav.selected"><Setter Property="BorderThickness" Value="4,0,0,0" /><Setter Property="BorderBrush" Value="#FF8A3C" /></Style>
+<Style Selector="Button.nav.selected Path"><Setter Property="Fill" Value="#FF8A3C" /></Style>
+<Style Selector="Button.quick"><Setter Property="HorizontalAlignment" Value="Stretch" /><Setter Property="HorizontalContentAlignment" Value="Left" /><Setter Property="MinHeight" Value="88" /><Setter Property="Padding" Value="18,14" /><Setter Property="Background" Value="#DF141E27" /></Style>
+<Style Selector="Button.launch"><Setter Property="FontSize" Value="24" /><Setter Property="MinHeight" Value="78" /><Setter Property="Padding" Value="28,18" /></Style>
+<Style Selector="Border.errorCard"><Setter Property="Background" Value="#F02B1D20" /><Setter Property="BorderBrush" Value="#F45C5C" /><Setter Property="BorderThickness" Value="1" /><Setter Property="Padding" Value="18" /><Setter Property="CornerRadius" Value="10" /></Style><Style Selector="Border.homeStatus"><Setter Property="MinHeight" Value="208" /><Setter Property="BorderBrush" Value="#52606B" /><Setter Property="Background" Value="#F01B2633" /></Style></Styles>
+
+
+
+
+
+
+
+

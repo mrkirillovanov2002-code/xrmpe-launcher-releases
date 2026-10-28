@@ -1,0 +1,122 @@
+[
+  {
+    "costume": "bandit_outfit",
+    "model": "meshes\\actors\\stalker_mp\\stalker_bandit_1.ogf"
+  },
+  {
+    "costume": "black_coat_outfit",
+    "model": "meshes\\actors\\stalker_mp\\stalker_bandit_4.ogf"
+  },
+  {
+    "costume": "brown_coat_outfit",
+    "model": "meshes\\actors\\stalker_mp\\stalker_bandit_3.ogf"
+  },
+  {
+    "costume": "cs_light_outfit",
+    "model": "meshes\\actors\\stalker_mp\\stalker_nebo_1.ogf"
+  },
+  {
+    "costume": "cs_mid_outfit",
+    "model": "meshes\\actors\\stalker_mp\\stalker_nebo_3.ogf"
+  },
+  {
+    "costume": "military_outfit",
+    "model": "meshes\\actors\\stalker_mp\\stalker_soldier_4.ogf"
+  },
+  {
+    "costume": "dolg_heavy_outfit",
+    "model": "meshes\\actors\\stalker_mp\\stalker_dolg_3.ogf"
+  },
+  {
+    "costume": "stalker_outfit",
+    "model": "meshes\\actors\\stalker_mp\\stalker_neutral_2.ogf"
+  },
+  {
+    "costume": "scientific_outfit",
+    "model": "meshes\\actors\\stalker_mp\\stalker_neutral_nauchniy.ogf"
+  },
+  {
+    "costume": "dolg_scientific_outfit",
+    "model": "meshes\\actors\\stalker_mp\\stalker_dolg_1.ogf"
+  },
+  {
+    "costume": "svoboda_scientific_outfit",
+    "model": "meshes\\actors\\stalker_mp\\stalker_freedom_5.ogf"
+  },
+  {
+    "costume": "dolg_outfit",
+    "model": "meshes\\actors\\stalker_mp\\stalker_dolg_2.ogf"
+  },
+  {
+    "costume": "svoboda_mid_outfit",
+    "model": "meshes\\actors\\stalker_mp\\stalker_freedom_2.ogf"
+  },
+  {
+    "costume": "svoboda_light_outfit",
+    "model": "meshes\\actors\\stalker_mp\\stalker_freedom_1.ogf"
+  },
+  {
+    "costume": "monolith_outfit",
+    "model": "meshes\\actors\\stalker_mp\\stalker_monolith_2.ogf"
+  },
+  {
+    "costume": "merc_outfit",
+    "model": "meshes\\actors\\stalker_mp\\stalker_merc_2.ogf"
+  },
+  {
+    "costume": "bandit_medium",
+    "model": "meshes\\actors\\stalker_mp\\stalker_bandit_2.ogf"
+  },
+  {
+    "costume": "cs_heavy_outfit",
+    "model": "meshes\\actors\\stalker_mp\\stalker_nebo_2.ogf"
+  },
+  {
+    "costume": "ecolog_outfit",
+    "model": "meshes\\actors\\stalker_mp\\stalker_ecolog.ogf"
+  },
+  {
+    "costume": "ecolog_outfit_military",
+    "model": "meshes\\actors\\stalker_mp\\stalker_ecolog_military.ogf"
+  },
+  {
+    "costume": "specops_outfit",
+    "model": "meshes\\actors\\stalker_mp\\stalker_soldier_3.ogf"
+  },
+  {
+    "costume": "exo_outfit",
+    "model": "meshes\\actors\\stalker_mp\\stalker_neutral_4.ogf"
+  },
+  {
+    "costume": "dolg_exo_outfit",
+    "model": "meshes\\actors\\stalker_mp\\stalker_dolg_4.ogf"
+  },
+  {
+    "costume": "svoboda_exo_outfit",
+    "model": "meshes\\actors\\stalker_mp\\stalker_freedom_4.ogf"
+  },
+  {
+    "costume": "svoboda_heavy_outfit",
+    "model": "meshes\\actors\\stalker_mp\\stalker_freedom_3.ogf"
+  },
+  {
+    "costume": "monolith_exo_outfit",
+    "model": "meshes\\actors\\stalker_mp\\stalker_monolith_4.ogf"
+  },
+  {
+    "costume": "merc_exo",
+    "model": "meshes\\actors\\stalker_mp\\stalker_merc_4.ogf"
+  },
+  {
+    "costume": "monolith_scientific_outfit",
+    "model": "meshes\\actors\\stalker_mp\\stalker_monolith_1.ogf"
+  },
+  {
+    "costume": "mercenary_scientific_outfit",
+    "model": "meshes\\actors\\stalker_mp\\stalker_mercenary.ogf"
+  },
+  {
+    "costume": "soldier_outfit_light",
+    "model": "meshes\\actors\\stalker_mp\\stalker_soldier_1_face_1.ogf"
+  }
+]

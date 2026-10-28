@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <ApplicationIcon>Assets\launcher.ico</ApplicationIcon>
+    <Version>0.6.1.3</Version>
+    <Product>xrMPE Launcher</Product>
+    <Description>xrMPE Custom Launcher</Description>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../Xrmpe.SelfUpdate/Xrmpe.SelfUpdate.csproj" />
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Avalonia.Desktop" Version="11.3.0" />
+    <PackageReference Include="Avalonia.Themes.Fluent" Version="11.3.0" />
+    <AvaloniaResource Include="Assets\launcher.ico" />
+    <AvaloniaResource Include="Assets\zone-background.jpg" /><AvaloniaResource Include="Assets\zonelink-industrial-sunset.png" />
+    <Content Include="Assets\launcher.ico" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
+    <Content Include="..\..\packaging\Create-Shortcut.ps1" Link="Create-Shortcut.ps1" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
+    <EmbeddedResource Include="..\..\packaging\LocalBuilder.zip" LogicalName="Xrmpe.Launcher.LocalBuilder.zip" />
+    <EmbeddedResource Include="..\..\packaging\LocalEmissiveBuilder\costumes.json" LogicalName="Xrmpe.Launcher.CosmeticCostumes.json" />
+  </ItemGroup>
+</Project>
+

@@ -1,0 +1,34 @@
+<Styles xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <Styles.Resources>
+    <SolidColorBrush x:Key="PdaBackground">#111513</SolidColorBrush>
+    <SolidColorBrush x:Key="PdaPanel">#1B211E</SolidColorBrush>
+    <SolidColorBrush x:Key="PdaLine">#394139</SolidColorBrush>
+    <SolidColorBrush x:Key="PdaText">#E9E7DB</SolidColorBrush>
+    <SolidColorBrush x:Key="PdaMuted">#A7ADA1</SolidColorBrush>
+    <SolidColorBrush x:Key="PdaAmber">#E5AF57</SolidColorBrush>
+    <SolidColorBrush x:Key="PdaOlive">#B4C28D</SolidColorBrush>
+  </Styles.Resources>
+  <Style Selector="Window"><Setter Property="FontFamily" Value="Segoe UI" /><Setter Property="FontSize" Value="14" /><Setter Property="Background" Value="{StaticResource PdaBackground}" /></Style>
+  <Style Selector="TextBlock"><Setter Property="Foreground" Value="{StaticResource PdaText}" /></Style>
+  <Style Selector="TextBlock.muted"><Setter Property="Foreground" Value="{StaticResource PdaMuted}" /><Setter Property="TextWrapping" Value="Wrap" /></Style>
+  <Style Selector="TextBlock.eyebrow"><Setter Property="Foreground" Value="{StaticResource PdaAmber}" /><Setter Property="FontSize" Value="11" /><Setter Property="LetterSpacing" Value="2" /><Setter Property="FontWeight" Value="SemiBold" /></Style>
+  <Style Selector="TextBlock.heading"><Setter Property="FontSize" Value="30" /><Setter Property="FontWeight" Value="SemiBold" /></Style>
+  <Style Selector="TextBlock.section"><Setter Property="FontSize" Value="19" /><Setter Property="FontWeight" Value="SemiBold" /></Style>
+  <Style Selector="Border.card"><Setter Property="Background" Value="{StaticResource PdaPanel}" /><Setter Property="BorderBrush" Value="{StaticResource PdaLine}" /><Setter Property="BorderThickness" Value="1" /><Setter Property="CornerRadius" Value="6" /><Setter Property="Padding" Value="22" /></Style>
+  <Style Selector="Button"><Setter Property="CornerRadius" Value="4" /><Setter Property="Padding" Value="16,11" /><Setter Property="MinHeight" Value="42" /><Setter Property="Cursor" Value="Hand" /><Setter Property="Background" Value="#30392F" /><Setter Property="Foreground" Value="{StaticResource PdaText}" /><Setter Property="BorderBrush" Value="#485243" /><Setter Property="BorderThickness" Value="1" /><Setter Property="Transitions"><Transitions><BrushTransition Property="Background" Duration="0:0:0.16" /><BrushTransition Property="BorderBrush" Duration="0:0:0.16" /></Transitions></Setter></Style>
+  <Style Selector="Button:pointerover /template/ ContentPresenter#PART_ContentPresenter"><Setter Property="Background" Value="#414D3C" /><Setter Property="BorderBrush" Value="{StaticResource PdaAmber}" /></Style>
+  <Style Selector="Button.primary"><Setter Property="Background" Value="{StaticResource PdaAmber}" /><Setter Property="Foreground" Value="#1B1C13" /><Setter Property="BorderBrush" Value="#F2CB85" /><Setter Property="FontWeight" Value="SemiBold" /></Style>
+  <Style Selector="Button.primary:pointerover /template/ ContentPresenter#PART_ContentPresenter"><Setter Property="Background" Value="#F3C674" /><Setter Property="Foreground" Value="#171A11" /></Style>
+  <Style Selector="Button.launch"><Setter Property="FontSize" Value="19" /><Setter Property="Padding" Value="28,17" /><Setter Property="MinHeight" Value="60" /></Style>
+  <Style Selector="Button.nav"><Setter Property="HorizontalAlignment" Value="Stretch" /><Setter Property="HorizontalContentAlignment" Value="Left" /><Setter Property="Background" Value="Transparent" /><Setter Property="BorderBrush" Value="Transparent" /><Setter Property="Padding" Value="14,13" /><Setter Property="Foreground" Value="#A7ADA1" /></Style>
+  <Style Selector="Button.nav.selected"><Setter Property="Background" Value="#30372A" /><Setter Property="BorderBrush" Value="#5E6547" /><Setter Property="Foreground" Value="#EBC382" /></Style>
+  <Style Selector="TextBox"><Setter Property="CornerRadius" Value="4" /><Setter Property="Padding" Value="12,10" /><Setter Property="MinHeight" Value="42" /><Setter Property="Background" Value="#111713" /><Setter Property="BorderBrush" Value="#4B5547" /><Setter Property="Foreground" Value="{StaticResource PdaText}" /><Setter Property="SelectionBrush" Value="#665438" /></Style>
+  <Style Selector="NumericUpDown"><Setter Property="MinHeight" Value="42" /><Setter Property="Background" Value="#111713" /><Setter Property="BorderBrush" Value="#4B5547" /></Style>
+  <Style Selector="ComboBox"><Setter Property="MinHeight" Value="42" /><Setter Property="Padding" Value="12,9" /><Setter Property="Background" Value="#222B22" /><Setter Property="BorderBrush" Value="#4B5547" /></Style>
+  <Style Selector="ProgressBar"><Setter Property="Foreground" Value="{StaticResource PdaAmber}" /><Setter Property="Background" Value="#30392F" /></Style>
+  <Style Selector="ToolTip"><Setter Property="MaxWidth" Value="380" /></Style>
+  <Style Selector="ListBox"><Setter Property="Background" Value="{StaticResource PdaPanel}" /><Setter Property="BorderThickness" Value="0" /></Style>
+  <Style Selector="ListBoxItem"><Setter Property="HorizontalContentAlignment" Value="Stretch" /><Setter Property="Padding" Value="12,4" /></Style>
+  <Style Selector="ListBoxItem:selected"><Setter Property="Background" Value="#394532" /></Style>
+  <Style Selector="TabItem:selected"><Setter Property="Foreground" Value="{StaticResource PdaAmber}" /></Style>
+</Styles>
